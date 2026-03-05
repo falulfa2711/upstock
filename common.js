@@ -24,10 +24,17 @@ function injectCommonHTML() {
             🛒 בסל: <span id="cart-count">0</span> | ₪<span id="cart-total-header">0.00</span>
         </div>
         <div class="search-box-mini">
-            <div style="position:relative;display:flex;align-items:center;gap:6px;width:100%;">
-              <input type="text" id="mainSearchInput" placeholder="🔍 חפש מוצר..." onkeyup="syncSearch(this.value)" autocomplete="off" style="flex:1;min-width:0;box-sizing:border-box;">
-              <button onclick="toggleCatMenu(event)" id="catToggleBtn" style="flex-shrink:0;padding:7px 12px;background:#ed1c24;color:white;border:none;border-radius:20px;font-size:0.82em;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit;">📂 קטגוריה ▾</button>
-              <div id="catMenu" style="display:none;position:absolute;top:calc(100% + 6px);right:0;background:white;border:2px solid #ed1c24;border-radius:12px;padding:10px;z-index:2000;flex-wrap:wrap;gap:7px;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.15);min-width:280px;">
+            <div style="position:relative;">
+              <div style="display:flex;align-items:center;background:white;border-radius:25px;overflow:hidden;height:38px;">
+                <input type="text" id="mainSearchInput" placeholder="🔍 חפש מוצר..." onkeyup="syncSearch(this.value)" autocomplete="off"
+                  style="flex:1;min-width:0;padding:0 14px;border:none;outline:none;font-size:0.95em;font-family:inherit;background:transparent;height:100%;">
+                <div style="width:1px;height:60%;background:#ddd;flex-shrink:0;"></div>
+                <button onclick="toggleCatMenu(event)" id="catToggleBtn"
+                  style="flex-shrink:0;padding:0 12px;background:transparent;color:#ed1c24;border:none;font-size:0.82em;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit;height:100%;display:flex;align-items:center;gap:4px;">
+                  📂 <span id="catLabel">קטגוריה ▾</span>
+                </button>
+              </div>
+              <div id="catMenu" style="display:none;position:absolute;top:calc(100% + 6px);right:0;background:white;border:2px solid #ed1c24;border-radius:12px;padding:10px;z-index:2000;flex-wrap:wrap;gap:7px;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.15);min-width:260px;">
                 <button class="cat-btn active" id="catAll" onclick="filterByCategory(null)">🏠 הכל</button>
                 <button class="cat-btn" onclick="filterByCategory('חד פעמי')">🥤 חד פעמי</button>
                 <button class="cat-btn" onclick="filterByCategory('מוצרי אפיה ובישול')">🍰 אפיה ובישול</button>
@@ -155,8 +162,8 @@ function injectCommonCSS() {
         :root { --primary: #ed1c24; --dark: #1a1a1a; --light: #f8f9fa; --success: #2ecc71; }
         body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--light); color: var(--dark); direction: rtl; }
         .cart-sticky-header { position: sticky; top: 0; z-index: 2000; background: var(--primary); color: white; padding: 10px 15px; display: flex; justify-content: center; align-items: center; gap: 20px; font-weight: bold; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-        .search-box-mini { width: 260px; }
-        .search-box-mini input { width: 100%; padding: 8px 16px; border-radius: 20px; border: none; outline: none; font-size: 1em; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        .search-box-mini { width: 340px; }
+        .search-box-mini input { background: transparent; }
         .search-box-mini input::placeholder { color: #aaa; }
         .cat-btn { padding:7px 14px;border:2px solid #ed1c24;border-radius:20px;background:white;color:#ed1c24;font-size:0.85em;font-weight:700;cursor:pointer;transition:all 0.2s;white-space:nowrap;font-family:inherit; }
         .cat-btn:hover,.cat-btn.active { background:#ed1c24;color:white; }
@@ -488,15 +495,15 @@ function filterByCategory(cat) {
     if (clickedBtn && clickedBtn.classList.contains('cat-btn')) clickedBtn.classList.add('active');
 
     // Update toggle button label
-    const toggleBtn = document.getElementById('catToggleBtn');
-    if (toggleBtn) {
+    const catLabel = document.getElementById('catLabel');
+    if (catLabel) {
         if (!cat) {
-            toggleBtn.textContent = '\uD83D\uDCC2 קטגוריה \u25BE';
-            toggleBtn.style.background = '#ed1c24';
+            catLabel.textContent = 'קטגוריה ▾';
+            catLabel.style.color = '#ed1c24';
         } else {
             const label = clickedBtn ? clickedBtn.textContent.trim() : cat;
-            toggleBtn.textContent = label + ' \u2715';
-            toggleBtn.style.background = '#c0392b';
+            catLabel.textContent = label + ' ✕';
+            catLabel.style.color = '#c0392b';
         }
     }
 
