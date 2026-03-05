@@ -20,17 +20,18 @@ function injectCommonHTML() {
             🛒 בסל: <span id="cart-count">0</span> | ₪<span id="cart-total-header">0.00</span>
         </div>
         <div class="search-box-mini">
-            <div style="position:relative;width:100%;">
-            <input type="text" id="mainSearchInput" placeholder="🔍 חפש מוצר..." onkeyup="syncSearch(this.value)" onfocus="openCatMenu()" onblur="setTimeout(closeCatMenu,200)" autocomplete="off" style="width:100%;box-sizing:border-box;">
-            <div id="catMenu" style="display:none;position:absolute;top:100%;right:0;left:0;background:white;border:2px solid #ed1c24;border-top:none;border-radius:0 0 12px 12px;padding:10px;z-index:2000;display:none;flex-wrap:wrap;gap:7px;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.15);">
-                <button class="cat-btn" id="catAll" onclick="filterByCategory(null)">🏠 הכל</button>
+            <div style="position:relative;display:flex;align-items:center;gap:6px;width:100%;">
+              <input type="text" id="mainSearchInput" placeholder="🔍 חפש מוצר..." onkeyup="syncSearch(this.value)" autocomplete="off" style="flex:1;min-width:0;box-sizing:border-box;">
+              <button onclick="toggleCatMenu(event)" id="catToggleBtn" style="flex-shrink:0;padding:7px 12px;background:#ed1c24;color:white;border:none;border-radius:20px;font-size:0.82em;font-weight:700;cursor:pointer;white-space:nowrap;font-family:inherit;">📂 קטגוריה ▾</button>
+              <div id="catMenu" style="display:none;position:absolute;top:calc(100% + 6px);right:0;background:white;border:2px solid #ed1c24;border-radius:12px;padding:10px;z-index:2000;flex-wrap:wrap;gap:7px;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.15);min-width:280px;">
+                <button class="cat-btn active" id="catAll" onclick="filterByCategory(null)">🏠 הכל</button>
                 <button class="cat-btn" onclick="filterByCategory('חד פעמי')">🥤 חד פעמי</button>
                 <button class="cat-btn" onclick="filterByCategory('מוצרי אפיה ובישול')">🍰 אפיה ובישול</button>
                 <button class="cat-btn" onclick="filterByCategory('מוצרי נקיון וטיפוח')">🧹 נקיון וטיפוח</button>
                 <button class="cat-btn" onclick="filterByCategory('יום הולדת ומתנות')">🎂 יום הולדת</button>
                 <button class="cat-btn" onclick="filterByCategory('לבית')">🏡 לבית</button>
                 <button class="cat-btn" onclick="filterByCategory('אביזרי רכב')">🚗 אביזרי רכב</button>
-            </div>
+              </div>
             </div>
         </div>`;
     document.body.insertBefore(header, document.body.firstChild);
@@ -371,6 +372,24 @@ function openCatMenu() {
 function closeCatMenu() {
     const m = document.getElementById('catMenu');
     if (m) m.style.display = 'none';
+}
+function toggleCatMenu(e) {
+    e.stopPropagation();
+    const m = document.getElementById('catMenu');
+    if (!m) return;
+    const isOpen = m.style.display === 'flex';
+    m.style.display = isOpen ? 'none' : 'flex';
+    if (!isOpen) {
+        // close when clicking outside
+        setTimeout(() => {
+            document.addEventListener('click', function handler(ev) {
+                if (!m.contains(ev.target)) {
+                    m.style.display = 'none';
+                    document.removeEventListener('click', handler);
+                }
+            });
+        }, 0);
+    }
 }
 function filterByCategory(cat) {
     activeCategory = cat;
