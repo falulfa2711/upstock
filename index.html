@@ -14,17 +14,39 @@
         /* === באנר פסח === */
         .pesach-banner {
             text-align: center;
-            background: white;
-            padding: 10px 20px 0;
+            background: linear-gradient(135deg, #fdf6e3, #fff8e7, #fdf6e3);
+            padding: 28px 20px;
+            margin: 0;
+            border-bottom: 3px solid #d4a843;
+            border-top: 3px solid #d4a843;
         }
-        .pesach-banner img {
-            width: 100%;
-            max-width: 900px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+        .pesach-banner .pesach-icon { font-size: 2.2em; margin-bottom: 6px; }
+        .pesach-banner h2 {
+            margin: 0 0 6px;
+            font-size: 1.6em;
+            color: #8b6914;
+            font-weight: 800;
+        }
+        .pesach-banner p {
+            margin: 0;
+            font-size: 1.1em;
+            color: #a07d2e;
+            font-weight: 500;
+        }
+        @keyframes pesach-glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .pesach-badge {
+            display: inline-block;
+            background: #d4a843;
+            color: white;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 700;
+            margin-top: 10px;
+            animation: pesach-glow 2s ease-in-out infinite;
         }
 
         .tagline { text-align: center; background: white; padding: 15px 20px 25px; }
@@ -81,7 +103,10 @@
 
 <!-- באנר פסח -->
 <div class="pesach-banner">
-    <img src="images/pesach-banner.png" alt="חג פסח שמח - השולחן ערוך, אתם רק צריכים לשבת | מבחר כלים חד פעמיים מעוצבים">
+    <div class="pesach-icon">🍷🫓✨</div>
+    <h2>חג פסח שמח!</h2>
+    <p>השולחן ערוך — אתם רק צריכים לשבת</p>
+    <span class="pesach-badge">🛍️ מבחר כלים חד פעמיים מעוצבים לחג</span>
 </div>
 
 <div class="tagline">
