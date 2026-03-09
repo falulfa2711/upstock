@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Appeal | Up סטוק</title>
+    <style>
+        /* ===== סטייל ייחודי לדף Food Appeal בלבד ===== */
+        .page-header { text-align: center; padding: 30px 20px; background: white; border-bottom: 3px solid var(--primary); margin-bottom: 30px; }
+        .page-header h1 { margin: 0; color: var(--primary); font-size: 2em; }
+        .page-header p { margin: 10px 0 0; color: #666; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 30px 0; }
+        .gallery img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.08); transition: 0.2s; }
+        .gallery img:hover { transform: scale(1.02); }
+        .section-title { border-right: 5px solid var(--primary); padding-right: 15px; font-size: 1.4em; margin: 30px 0 20px; }
+    </style>
+    <script src="common.js" defer></script>
+</head>
+<body>
+
+    <div class="page-header">
+        <h1>🍳 Food Appeal</h1>
+        <p>מגוון מוצרי Food Appeal איכותיים לבית ולמטבח</p>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">תמונות מהחנות</h2>
+        <div class="gallery">
+            <img src="images/food appeal.jpeg"  alt="Food Appeal" onclick="openImg(this.src)" onerror="this.style.display='none'">
+            <img src="images/food appeal2.jpeg" alt="Food Appeal" onclick="openImg(this.src)" onerror="this.style.display='none'">
+            <img src="images/food appeal3.jpeg" alt="Food Appeal" onclick="openImg(this.src)" onerror="this.style.display='none'">
+            <img src="images/food appeal4.jpeg" alt="Food Appeal" onclick="openImg(this.src)" onerror="this.style.display='none'">
+        </div>
+    </div>
+
+</body>
+</html>
