@@ -32,6 +32,15 @@
             <img src="images/bake3.jpeg" alt="אפייה" onclick="openImg(this.src)" onerror="this.style.display='none'">
             <img src="images/bake4.jpeg" alt="אפייה" onclick="openImg(this.src)" onerror="this.style.display='none'">
         </div>
+
+        <div id="productSliderSection" class="product-slider-section">
+            <h2 class="section-title">🛍️ מוצרים נבחרים</h2>
+            <div class="product-slider-wrap">
+                <button class="slider-arrow slider-arrow-next" onclick="slideProducts('next')">❮</button>
+                <div class="product-slider" id="productSlider" data-category="מוצרי אפיה ובישול"></div>
+                <button class="slider-arrow slider-arrow-prev" onclick="slideProducts('prev')">❯</button>
+            </div>
+        </div>
     </div>
 
 </body>
