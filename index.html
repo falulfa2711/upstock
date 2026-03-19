@@ -172,10 +172,10 @@ async function loadTicker() {
         const rows = text.split('\n').filter(r => r.trim());
         const messages = [];
         for (let i = 1; i < rows.length; i++) {
-            const firstComma = rows[i].indexOf(',');
-            if (firstComma === -1) continue;
-            const msg = rows[i].substring(0, firstComma).trim().replace(/^"|"$/g, '');
-            if (msg) messages.push(msg);
+            const parts = rows[i].split(',');
+            const msg = parts[0].trim().replace(/^"|"$/g, '');
+            const emoji = parts.slice(1).join(' ').trim().replace(/^"|"$/g, '');
+            if (msg) messages.push(msg + (emoji ? ' ' + emoji : ''));
         }
         if (!messages.length) return;
         const single = messages.map(m =>
