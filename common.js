@@ -3,7 +3,7 @@
 //  v1.1
 // ============================================================
 
-const WHATSAPP_NUMBER = '972549397753';
+const WHATSAPP_NUMBER = '972508810105';
 const BIT_NUMBER      = '0543191550';
 const PAYBOX_NUMBER   = 'YOUR_PAYBOX_NUMBER';
 
