@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Up סטוק | דף הבית</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f9f5ff;
+      --surface: #ffffff;
+      --text: #1a0a2e;
+      --text-muted: #6b5b8a;
+      --accent: #7c3aed;
+      --accent2: #f59e0b;
+      --accent3: #10b981;
+      --accent-light: #ede9fe;
+      --accent-hover: #6d28d9;
+      --border: #e5deff;
+      --radius: 18px;
+      --font: 'Heebo', sans-serif;
+      --gradient: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #ec4899 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      direction: rtl;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-bar {
+      background: var(--gradient);
+      color: #fff;
+      padding: 9px 0;
+      overflow: hidden;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 60px;
+      animation: marquee 22s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-track span, .marquee-track a {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .marquee-track a {
+      color: #fff; text-decoration: none;
+      background: rgba(255,255,255,0.15);
+      padding: 3px 12px; border-radius: 50px;
+      transition: background 0.2s;
+    }
+    .marquee-track a:hover { background: rgba(255,255,255,0.3); }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(249,245,255,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo img {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(124,58,237,0.25);
+    }
+    .logo-text {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -0.5px;
+    }
+    .logo-text span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav { display: flex; align-items: center; gap: 4px; }
+    nav a {
+      font-size: 14px; font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 50px;
+      transition: all 0.18s;
+      white-space: nowrap;
+    }
+    nav a:hover { color: var(--accent); background: var(--accent-light); }
+
+    .header-search {
+      flex: 1; max-width: 360px;
+      position: relative;
+    }
+    .header-search input {
+      width: 100%;
+      padding: 10px 16px 10px 42px;
+      border-radius: 50px;
+      border: 2px solid var(--border);
+      background: var(--surface);
+      font-family: var(--font);
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.18s, box-shadow 0.18s;
+      direction: rtl;
+    }
+    .header-search input::placeholder { color: var(--text-muted); }
+    .header-search input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(124,58,237,0.12);
+    }
+    .header-search .search-icon {
+      position: absolute; left: 14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted); pointer-events: none;
+    }
+    .search-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px); right: 0; left: 0;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 16px 48px rgba(124,58,237,0.15);
+      overflow: hidden; z-index: 200;
+    }
+    .search-dropdown.open { display: block; }
+    .search-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 16px;
+      font-size: 14px; color: var(--text);
+      text-decoration: none;
+      transition: background 0.15s; cursor: pointer;
+    }
+    .search-item:hover { background: var(--accent-light); }
+    .search-item .si-icon { font-size: 20px; }
+    .search-item .si-label { font-weight: 600; }
+    .search-item .si-cat { font-size: 12px; color: var(--text-muted); }
+
+    .header-cta {
+      background: var(--gradient);
+      color: #fff; border: none;
+      padding: 10px 20px; border-radius: 50px;
+      font-family: var(--font); font-size: 14px; font-weight: 700;
+      cursor: pointer; white-space: nowrap;
+      text-decoration: none;
+      transition: opacity 0.18s, transform 0.12s;
+      display: flex; align-items: center; gap: 6px;
+      box-shadow: 0 4px 16px rgba(124,58,237,0.35);
+    }
+    .header-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ── QUICK BAR ── */
+    .quick-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .quick-bar-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 24px;
+      display: flex; overflow-x: auto;
+    }
+    .quick-bar-inner::-webkit-scrollbar { display: none; }
+    .quick-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 14px 20px;
+      font-size: 14px; font-weight: 600;
+      color: var(--text-muted); cursor: pointer;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: all 0.18s; text-decoration: none;
+    }
+    .quick-item:hover, .quick-item.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1200px; margin: 0 auto;
+      padding: 72px 24px 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 13px; font-weight: 700;
+      padding: 6px 16px; border-radius: 50px;
+      margin-bottom: 24px;
+      border: 1.5px solid rgba(124,58,237,0.2);
+    }
+    .hero h1 {
+      font-size: clamp(34px, 4vw, 54px);
+      font-weight: 900; line-height: 1.12;
+      letter-spacing: -1px; color: var(--text);
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 18px; font-weight: 400;
+      color: var(--text-muted); line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gradient);
+      color: #fff; padding: 14px 28px;
+      border-radius: 50px;
+      font-family: var(--font); font-size: 16px; font-weight: 700;
+      text-decoration: none;
+      transition: all 0.18s; border: none; cursor: pointer;
+      box-shadow: 0 6px 24px rgba(124,58,237,0.4);
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 10px 32px rgba(124,58,237,0.5); }
+    .btn-secondary {
+      background: transparent; color: var(--accent);
+      padding: 14px 28px; border-radius: 50px;
+      font-family: var(--font); font-size: 16px; font-weight: 600;
+      text-decoration: none;
+      border: 2px solid var(--accent);
+      transition: all 0.18s;
+    }
+    .btn-secondary:hover { background: var(--accent-light); }
+
+    .hero-stats {
+      display: flex; gap: 32px;
+      margin-top: 48px; padding-top: 36px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-num { font-size: 28px; font-weight: 900; color: var(--text); }
+    .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+    .hero-visual { position: relative; }
+    .hero-carousel {
+      position: relative; width: 100%; aspect-ratio: 4/3;
+      border-radius: 28px; overflow: hidden;
+      box-shadow: 0 30px 80px rgba(124,58,237,0.2);
+    }
+    .hero-carousel .slide {
+      position: absolute; inset: 0; opacity: 0;
+      transition: opacity 0.7s ease;
+    }
+    .hero-carousel .slide.active { opacity: 1; }
+    .hero-carousel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .carousel-dots {
+      position: absolute; bottom: 14px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 6px; z-index: 10;
+    }
+    .carousel-dots span {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      transition: background 0.3s, transform 0.3s; cursor: pointer;
+    }
+    .carousel-dots span.active { background: #fff; transform: scale(1.3); }
+
+    /* ── CATEGORIES ── */
+    .section {
+      max-width: 1200px; margin: 0 auto;
+      padding: 72px 24px;
+    }
+    .section-header {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; margin-bottom: 40px;
+    }
+    .section-label {
+      font-size: 12px; font-weight: 800;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 8px;
+    }
+    .section-title { font-size: 32px; font-weight: 900; letter-spacing: -0.5px; }
+    .see-all {
+      font-size: 14px; font-weight: 700;
+      color: var(--accent); text-decoration: none;
+      padding: 8px 20px; border: 2px solid var(--accent);
+      border-radius: 50px; transition: all 0.18s; white-space: nowrap;
+    }
+    .see-all:hover { background: var(--accent); color: #fff; }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    .cat-card {
+      display: flex; flex-direction: column;
+      text-decoration: none; color: var(--text);
+      border-radius: var(--radius); overflow: hidden;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      transition: all 0.25s;
+    }
+    .cat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(124,58,237,0.15);
+      border-color: var(--accent);
+    }
+    .cat-card:hover .cat-img { transform: scale(1.08); }
+    .cat-img-wrap { aspect-ratio: 1; overflow: hidden; background: var(--accent-light); }
+    .cat-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .cat-info { padding: 16px; }
+    .cat-name { font-size: 15px; font-weight: 800; }
+    .cat-arrow { font-size: 13px; color: var(--accent); margin-top: 4px; font-weight: 600; }
+
+    /* ── PROMO BANNER ── */
+    .promo-section {
+      background: linear-gradient(135deg, #1a0a2e 0%, #3b0764 100%);
+      color: #fff; padding: 0; margin: 0;
+      position: relative; overflow: hidden;
+    }
+    .promo-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(124,58,237,0.4) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 20%, rgba(236,72,153,0.3) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .promo-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; align-items: stretch; position: relative;
+    }
+    .promo-content { padding: 72px 0 72px 60px; }
+    .promo-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(245,158,11,0.2); color: var(--accent2);
+      font-size: 12px; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; padding: 6px 16px;
+      border-radius: 50px; margin-bottom: 24px;
+      border: 1px solid rgba(245,158,11,0.4);
+    }
+    .promo-content h2 {
+      font-size: 42px; font-weight: 900;
+      line-height: 1.12; letter-spacing: -1px; margin-bottom: 16px;
+    }
+    .promo-content h2 span { color: var(--accent2); }
+    .promo-content p {
+      font-size: 17px; color: rgba(255,255,255,0.65);
+      line-height: 1.7; margin-bottom: 36px;
+    }
+    .promo-img { width: 100%; height: 100%; min-height: 380px; object-fit: cover; display: block; }
+
+    /* ── REVIEWS ── */
+    .reviews-bg {
+      background: linear-gradient(180deg, #f9f5ff 0%, #ede9fe 100%);
+    }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .review-card {
+      background: var(--surface); border-radius: var(--radius);
+      padding: 28px; border: 2px solid var(--border);
+      transition: all 0.22s;
+    }
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(124,58,237,0.12);
+      border-color: var(--accent);
+    }
+    .review-stars { display: flex; gap: 3px; margin-bottom: 16px; }
+    .star { color: var(--accent2); font-size: 18px; }
+    .review-text { font-size: 15px; line-height: 1.75; color: var(--text); margin-bottom: 20px; }
+    .review-author { display: flex; align-items: center; gap: 12px; }
+    .review-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--gradient);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 800; color: #fff; flex-shrink: 0;
+    }
+    .review-name { font-size: 14px; font-weight: 800; }
+    .review-date { font-size: 12px; color: var(--text-muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: linear-gradient(135deg, #1a0a2e 0%, #3b0764 100%);
+      color: rgba(255,255,255,0.85);
+      padding: 64px 0 32px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px;
+    }
+    .footer-logo-text { font-size: 22px; font-weight: 900; color: #fff; }
+    .footer-logo-text span {
+      background: linear-gradient(135deg, #a78bfa, #f472b6);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .footer-tagline { font-size: 15px; color: rgba(255,255,255,0.5); margin-top: 12px; line-height: 1.7; }
+    .footer-socials { display: flex; gap: 10px; margin-top: 24px; }
+    .social-btn {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; text-decoration: none; transition: background 0.18s;
+    }
+    .social-btn:hover { background: rgba(124,58,237,0.4); }
+    .footer-col h4 {
+      font-size: 12px; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li span, .footer-col ul li a {
+      font-size: 14px; color: rgba(255,255,255,0.7);
+      text-decoration: none; transition: color 0.18s;
+    }
+    .footer-col ul li a:hover { color: #a78bfa; }
+    .footer-bottom {
+      max-width: 1200px; margin: 48px auto 0;
+      padding: 24px 24px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 13px; color: rgba(255,255,255,0.3);
+    }
+
+    /* ── CART ── */
+    .cart-btn {
+      position: relative; background: var(--accent-light);
+      border: 2px solid var(--border); border-radius: 50px;
+      padding: 8px 16px;
+      display: flex; align-items: center; gap: 7px;
+      cursor: pointer; transition: all 0.18s; flex-shrink: 0;
+      font-family: var(--font); font-size: 14px; font-weight: 700;
+      color: var(--accent);
+    }
+    .cart-btn:hover { border-color: var(--accent); background: #fff; }
+    .cart-count {
+      background: var(--gradient);
+      color: #fff; font-size: 11px; font-weight: 800;
+      width: 20px; height: 20px; border-radius: 50%;
+      display: none; align-items: center; justify-content: center;
+    }
+
+    /* Cart drawer */
+    .cart-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(26,10,46,0.5); z-index: 900;
+      backdrop-filter: blur(4px);
+    }
+    .cart-overlay.open { display: block; }
+    .cart-drawer {
+      position: fixed; top: 0; left: -420px; width: 420px; height: 100%;
+      background: var(--surface); z-index: 901;
+      transition: left 0.35s cubic-bezier(0.4,0,0.2,1);
+      display: flex; flex-direction: column;
+      box-shadow: 8px 0 40px rgba(124,58,237,0.15);
+    }
+    .cart-drawer.open { left: 0; }
+    .cart-drawer-header {
+      padding: 24px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cart-drawer-header h3 { font-size: 20px; font-weight: 900; }
+    .cart-close {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--accent-light); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; font-size: 18px;
+      color: var(--accent); transition: background 0.18s;
+    }
+    .cart-close:hover { background: var(--accent); color: #fff; }
+    .cart-items { flex: 1; overflow-y: auto; padding: 16px 24px; }
+    .cart-empty { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+    .cart-empty .empty-icon { font-size: 48px; margin-bottom: 12px; }
+    .cart-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 16px 0; border-bottom: 1px solid var(--border);
+    }
+    .cart-item-img {
+      width: 64px; height: 64px; border-radius: 12px;
+      object-fit: cover; background: var(--accent-light); flex-shrink: 0;
+    }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .cart-item-price { font-size: 14px; color: var(--accent); font-weight: 800; }
+    .cart-item-qty {
+      display: flex; align-items: center; gap: 8px; margin-top: 8px;
+    }
+    .qty-btn {
+      width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--border);
+      background: var(--surface); cursor: pointer; font-size: 16px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); transition: all 0.15s;
+    }
+    .qty-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .qty-num { font-size: 14px; font-weight: 800; min-width: 20px; text-align: center; }
+    .cart-remove { background: none; border: none; cursor: pointer; color: #f87171; font-size: 18px; padding: 4px; }
+    .cart-footer { padding: 24px; border-top: 1px solid var(--border); }
+    .cart-total { display: flex; justify-content: space-between; margin-bottom: 16px; font-size: 16px; font-weight: 800; }
+    .cart-total span:last-child { color: var(--accent); }
+    .cart-wa-btn {
+      width: 100%; padding: 14px;
+      background: #25d366; color: #fff; border: none;
+      border-radius: 50px; font-family: var(--font); font-size: 16px; font-weight: 800;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: all 0.18s; box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+    }
+    .cart-wa-btn:hover { background: #1ebe5d; transform: translateY(-1px); }
+
+    /* ── PRODUCT CARDS ── */
+    .products-section { background: var(--bg); }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .product-card {
+      background: var(--surface); border-radius: var(--radius);
+      border: 2px solid var(--border); overflow: hidden;
+      transition: all 0.25s; display: flex; flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(124,58,237,0.15);
+      border-color: var(--accent);
+    }
+    .product-img-wrap { aspect-ratio: 1; overflow: hidden; background: var(--accent-light); position: relative; }
+    .product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .product-card:hover .product-img { transform: scale(1.06); }
+    .product-badge {
+      position: absolute; top: 10px; right: 10px;
+      background: var(--gradient); color: #fff;
+      font-size: 11px; font-weight: 800; padding: 4px 10px;
+      border-radius: 50px;
+    }
+    .out-of-stock-badge {
+      position: absolute; top: 10px; right: 10px;
+      background: #ef4444; color: #fff;
+      font-size: 11px; font-weight: 800; padding: 4px 10px;
+      border-radius: 50px;
+    }
+    .product-info { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+    .product-name { font-size: 15px; font-weight: 800; margin-bottom: 6px; }
+    .product-price { font-size: 18px; font-weight: 900; color: var(--accent); margin-bottom: 14px; }
+    .product-price .old-price {
+      font-size: 13px; color: var(--text-muted);
+      text-decoration: line-through; font-weight: 500; margin-right: 6px;
+    }
+    .add-to-cart {
+      margin-top: auto; width: 100%; padding: 10px;
+      background: var(--gradient); color: #fff; border: none;
+      border-radius: 50px; font-family: var(--font); font-size: 14px; font-weight: 700;
+      cursor: pointer; transition: all 0.18s;
+    }
+    .add-to-cart:hover { opacity: 0.88; transform: translateY(-1px); }
+    .add-to-cart:disabled {
+      background: #e5e7eb; color: #9ca3af; cursor: not-allowed; transform: none;
+    }
+
+    /* Search results panel */
+    .search-results-panel {
+      display: none;
+      max-width: 1200px; margin: 0 auto; padding: 0 24px 48px;
+    }
+    .search-results-panel.open { display: block; }
+    .search-results-title {
+      font-size: 20px; font-weight: 800; margin-bottom: 24px;
+      color: var(--text);
+    }
+
+    /* ── WA FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 28px; left: 28px;
+      z-index: 999; width: 58px; height: 58px;
+      background: #25d366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+      text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.08); }
+    .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { display: none; }
+      .category-grid { grid-template-columns: repeat(3, 1fr); }
+      nav { display: none; }
+      .promo-inner { grid-template-columns: 1fr; }
+      .promo-img { display: none; }
+      .promo-content { padding: 48px 0; }
+      .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .cart-drawer { width: 100%; left: -100%; }
+    }
+    @media (max-width: 600px) {
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-stats { gap: 20px; }
+      .section { padding: 48px 16px; }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content > * {
+      animation: fadeInUp 0.6s ease both;
+    }
+    .hero-badge { animation-delay: 0.1s; }
+    .hero h1 { animation-delay: 0.2s; }
+    .hero p { animation-delay: 0.3s; }
+    .hero-actions { animation-delay: 0.4s; }
+    .hero-stats { animation-delay: 0.5s; }
+  </style>
+</head>
+<body>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <a href="henna.html">🌿 אביזרי חינה</a>
+    <a href="car.html">🚗 אביזרי רכב</a>
+    <a href="cables.html">🔌 כבלים ומטענים</a>
+    <a href="electric.html">⚡ תקעים ומאריכים</a>
+    <span>🛍️ מחירים שמשתלמים</span>
+    <span>📍 המסגר 1, אור יהודה</span>
+    <a href="henna.html">🌿 אביזרי חינה</a>
+    <a href="car.html">🚗 אביזרי רכב</a>
+    <a href="cables.html">🔌 כבלים ומטענים</a>
+    <a href="electric.html">⚡ תקעים ומאריכים</a>
+    <span>🛍️ מחירים שמשתלמים</span>
+    <span>📍 המסגר 1, אור יהודה</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <img src="https://falulfa2711.github.io/upstock/images/logo.jpg" alt="UP Stock Logo" />
+      <span class="logo-text">UP <span>סטוק</span></span>
+    </a>
+    <div class="header-search">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="main-search" placeholder="חפש מוצר, קטגוריה..." autocomplete="off" />
+      <div class="search-dropdown" id="search-dropdown">
+        <a href="https://falulfa2711.github.io/upstock/hadpaami.html" class="search-item"><span class="si-icon">🥤</span><div><div class="si-label">חד פעמי</div><div class="si-cat">קטגוריה</div></div></a>
+        <a href="https://falulfa2711.github.io/upstock/baking.html" class="search-item"><span class="si-icon">🧁</span><div><div class="si-label">אפייה ומטבח</div><div class="si-cat">קטגוריה</div></div></a>
+        <a href="https://falulfa2711.github.io/upstock/cleaning.html" class="search-item"><span class="si-icon">🧹</span><div><div class="si-label">מוצרי ניקיון</div><div class="si-cat">קטגוריה</div></div></a>
+        <a href="https://falulfa2711.github.io/upstock/birthday.html" class="search-item"><span class="si-icon">🎂</span><div><div class="si-label">ימי הולדת</div><div class="si-cat">קטגוריה</div></div></a>
+        <a href="https://falulfa2711.github.io/upstock/foodappeal.html" class="search-item"><span class="si-icon">🍱</span><div><div class="si-label">Food Appeal</div><div class="si-cat">קטגוריה</div></div></a>
+        <a href="https://wa.me/972508810105?text=היי, אני מתעניין במדי צופים" class="search-item" target="_blank"><span class="si-icon">👕</span><div><div class="si-label">מדי צופים</div><div class="si-cat">מוצר</div></div></a>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">דף בית</a>
+      <a href="#categories">קטגוריות</a>
+      <a href="promos.html">מבצעים 🔥</a>
+      <a href="reviews.html">חוות דעת</a>
+      <a href="about.html">אודות</a>
+      <a href="policy.html">מדיניות</a>
+      <a href="#contact">צור קשר</a>
+    </nav>
+    <button class="cart-btn" id="cart-toggle">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      עגלת קניות
+      <span class="cart-count" id="cart-count">0</span>
+    </button>
+    <a href="https://wa.me/972508810105" class="header-cta" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      שלח הודעה
+    </a>
+  </div>
+</header>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-drawer-header">
+    <h3>🛒 עגלת הקניות</h3>
+    <button class="cart-close" id="cart-close">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty">
+      <div class="empty-icon">🛍️</div>
+      <p>העגלה ריקה</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-total">
+      <span>סה"כ:</span>
+      <span id="cart-total-price">₪0</span>
+    </div>
+    <button class="cart-wa-btn" id="cart-wa-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      הזמן בוואטסאפ
+    </button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section>
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">✨ הכל במקום אחד</div>
+      <h1>הכל לבית, לאירוע<br/>ולמטבח — <em>במחיר שמשתלם</em></h1>
+      <p>מוצרי ניקיון, אפייה, חד-פעמי, ימי הולדת ועוד.<br/>המותגים הטובים ביותר, במחיר שתאהבו.</p>
+      <div class="hero-actions">
+        <a href="#categories" class="btn-primary">לקטגוריות 🛍️</a>
+        <a href="https://wa.me/972508810105" class="btn-secondary" target="_blank">דברו איתנו</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">1,000+</div><div class="stat-label">מוצרים בחנות</div></div>
+        <div class="stat"><div class="stat-num">⭐ 5.0</div><div class="stat-label">דירוג לקוחות</div></div>
+        <div class="stat"><div class="stat-num">אור יהודה</div><div class="stat-label">המסגר 1</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-carousel" id="hero-carousel">
+        <div class="slide active"><img src="https://falulfa2711.github.io/upstock/images/hadpaami.jpg" alt="חד פעמי" /></div>
+        <div class="slide"><img src="https://falulfa2711.github.io/upstock/images/bake1.jpeg" alt="אפייה ומטבח" /></div>
+        <div class="slide"><img src="https://falulfa2711.github.io/upstock/images/clean1.jpeg" alt="ניקיון" /></div>
+        <div class="slide"><img src="https://falulfa2711.github.io/upstock/images/bday1.jpeg" alt="ימי הולדת" /></div>
+        <div class="slide"><img src="https://falulfa2711.github.io/upstock/images/food appeal.jpeg" alt="Food Appeal" /></div>
+        <div class="slide"><img src="https://falulfa2711.github.io/upstock/images/scouts.webp" alt="מדי צופים" /></div>
+        <div class="carousel-dots" id="carousel-dots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories">
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-label">קטגוריות</div>
+        <h2 class="section-title">מה תחפשו היום? 👇</h2>
+      </div>
+    </div>
+    <div class="category-grid">
+      <a href="https://falulfa2711.github.io/upstock/hadpaami.html" class="cat-card">
+        <div class="cat-img-wrap"><img class="cat-img" src="https://falulfa2711.github.io/upstock/images/hadpaami.jpg" alt="חד פעמי" /></div>
+        <div class="cat-info"><div class="cat-name">חד פעמי 🥤</div><div class="cat-arrow">לצפייה ←</div></div>
+      </a>
+      <a href="https://falulfa2711.github.io/upstock/baking.html" class="cat-card">
+        <div class="cat-img-wrap"><img class="cat-img" src="https://falulfa2711.github.io/upstock/images/bake1.jpeg" alt="אפייה" /></div>
+        <div class="cat-info"><div class="cat-name">אפייה ומטבח 🧁</div><div class="cat-arrow">לצפייה ←</div></div>
+      </a>
+      <a href="https://falulfa2711.github.io/upstock/cleaning.html" class="cat-card">
+        <div class="cat-img-wrap"><img class="cat-img" src="https://falulfa2711.github.io/upstock/images/clean1.jpeg" alt="ניקיון" /></div>
+        <div class="cat-info"><div class="cat-name">מוצרי ניקיון 🧹</div><div class="cat-arrow">לצפייה ←</div></div>
+      </a>
+      <a href="https://falulfa2711.github.io/upstock/birthday.html" class="cat-card">
+        <div class="cat-img-wrap"><img class="cat-img" src="https://falulfa2711.github.io/upstock/images/bday1.jpeg" alt="ימי הולדת" /></div>
+        <div class="cat-info"><div class="cat-name">ימי הולדת 🎂</div><div class="cat-arrow">לצפייה ←</div></div>
+      </a>
+      <a href="https://falulfa2711.github.io/upstock/foodappeal.html" class="cat-card">
+        <div class="cat-img-wrap"><img class="cat-img" src="https://falulfa2711.github.io/upstock/images/food appeal.jpeg" alt="Food Appeal" /></div>
+        <div class="cat-info"><div class="cat-name">Food Appeal 🍱</div><div class="cat-arrow">לצפייה ←</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- HOME ACCESSORIES PROMO -->
+<!-- PROMO BANNERS: מדי צופים + אקססוריז לבית -->
+<section class="promo-section">
+  <div style="max-width:1200px; margin:0 auto; padding:0 24px; display:grid; grid-template-columns:1fr 1fr; gap:0; position:relative; z-index:1;">
+    <!-- מדי צופים -->
+    <div id="scouts" style="padding:40px 40px 40px 0; border-left:1px solid rgba(255,255,255,0.1);">
+      <div class="promo-tag">👕 מדי צופים</div>
+      <h2 style="font-size:28px;font-weight:900;line-height:1.2;margin-bottom:10px;">מדים, חגורות<br/>ואביזרים לצופים</h2>
+      <p style="font-size:15px;color:rgba(255,255,255,0.6);margin-bottom:24px;">מגוון רחב לתנועת הצופים. שירות אישי ואספקה מהירה.</p>
+      <a href="https://wa.me/972508810105?text=היי, אני מתעניין במדי צופים" class="btn-primary" target="_blank" style="font-size:14px;padding:11px 22px;">לפרטים ←</a>
+    </div>
+    <!-- אקססוריז לבית -->
+    <div id="home-accessories" style="padding:40px 40px 40px 40px;">
+      <div class="promo-tag">🏠 חדש</div>
+      <h2 style="font-size:28px;font-weight:900;line-height:1.2;margin-bottom:10px;">אקססוריז<br/><span style="color:var(--accent2)">לבית</span></h2>
+      <p style="font-size:15px;color:rgba(255,255,255,0.6);margin-bottom:24px;">עיצוב, נוי ושימושיות — הכל במקום אחד. תמונות בקרוב!</p>
+      <a href="https://wa.me/972508810105?text=היי, אני מתעניין באקססוריז לבית" class="btn-primary" target="_blank" style="font-size:14px;padding:11px 22px;">לפרטים ←</a>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="reviews-bg">
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-label">חוות דעת</div>
+        <h2 class="section-title">⭐ לקוחות ממליצים</h2>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="review-text">חנות מדהימה! מגוון ענק של מוצרים במחירים מצוינים. תמיד מוצאים את מה שצריך.</p>
+        <div class="review-author"><div class="review-avatar">מ</div><div><div class="review-name">מיכל כ.</div><div class="review-date">לקוחה קבועה</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="review-text">שירות מעולה ומחירים שלא תמצאו בשום מקום אחר. ממליץ בחום לכולם!</p>
+        <div class="review-author"><div class="review-avatar">ד</div><div><div class="review-name">דוד א.</div><div class="review-date">לקוח מרוצה</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="review-text">הזמנתי מדי צופים לילד שלי ויצאו מושלמים. משלוח מהיר ושירות אדיב.</p>
+        <div class="review-author"><div class="review-avatar">ר</div><div><div class="review-name">רחל ש.</div><div class="review-date">לקוחה מרוצה</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo-text">UP <span>סטוק</span></div>
+      <p class="footer-tagline">קונים מה שרוצים<br/>במקום שאוהבים 🛍️</p>
+      <div class="footer-socials">
+        <a href="https://wa.me/972508810105" class="social-btn" target="_blank">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>ניווט מהיר</h4>
+      <ul>
+        <li><a href="index.html">דף בית</a></li>
+        <li><a href="promos.html">מבצעים</a></li>
+        <li><a href="reviews.html">חוות דעת</a></li>
+        <li><a href="about.html">אודות</a></li>
+        <li><a href="policy.html">מדיניות</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>פרטי קשר</h4>
+      <ul>
+        <li><span>📍 המסגר 1, אור יהודה</span></li>
+        <li><a href="tel:0508810105">📞 050-881-0105</a></li>
+        <li><span>א'–ה': 07:30–20:00</span></li>
+        <li><span>שישי: 07:00–14:00</span></li>
+        <li><span>שבת: סגור</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 UP סטוק — כל הזכויות שמורות</span>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/972508810105" class="wa-float" target="_blank" title="שלח הודעה בוואטסאפ">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+// ── CART STATE ──
+let cart = [];
+
+function saveCart() { try { sessionStorage.setItem('upstock_cart', JSON.stringify(cart)); } catch(e){} }
+function loadCart() { try { const s = sessionStorage.getItem('upstock_cart'); if(s) cart = JSON.parse(s); } catch(e){} }
+
+loadCart();
+
+function updateCartUI() {
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const countEl = document.getElementById('cart-count');
+  const totalEl = document.getElementById('cart-total-price');
+  const footerEl = document.getElementById('cart-footer');
+  const itemsEl = document.getElementById('cart-items');
+
+  countEl.textContent = count;
+  countEl.style.display = count > 0 ? 'flex' : 'none';
+  if (totalEl) totalEl.textContent = '₪' + total.toFixed(2);
+  if (footerEl) footerEl.style.display = cart.length > 0 ? 'block' : 'none';
+
+  if (!itemsEl) return;
+  if (cart.length === 0) {
+    itemsEl.innerHTML = '<div class="cart-empty"><div class="empty-icon">🛍️</div><p>העגלה ריקה</p></div>';
+    return;
+  }
+
+  itemsEl.innerHTML = cart.map((item, idx) => `
+    <div class="cart-item">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">₪${(item.price * item.qty).toFixed(2)}</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeQty(${idx}, -1)">−</button>
+          <span class="qty-num">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
+          <button class="cart-remove" onclick="removeItem(${idx})">🗑️</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function addToCart(name, price, inStock) {
+  if (!inStock) return;
+  const existing = cart.find(i => i.name === name);
+  if (existing) existing.qty++;
+  else cart.push({ name, price, qty: 1 });
+  saveCart();
+  updateCartUI();
+  openCart();
+}
+
+function changeQty(idx, delta) {
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  saveCart();
+  updateCartUI();
+}
+
+function removeItem(idx) {
+  cart.splice(idx, 1);
+  saveCart();
+  updateCartUI();
+}
+
+function openCart() {
+  document.getElementById('cart-drawer').classList.add('open');
+  document.getElementById('cart-overlay').classList.add('open');
+}
+function closeCart() {
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.getElementById('cart-overlay').classList.remove('open');
+}
+
+document.getElementById('cart-toggle').addEventListener('click', openCart);
+document.getElementById('cart-close').addEventListener('click', closeCart);
+document.getElementById('cart-overlay').addEventListener('click', closeCart);
+
+document.getElementById('cart-wa-btn').addEventListener('click', () => {
+  if (cart.length === 0) return;
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  let msg = 'שלום! אני רוצה להזמין:\n\n';
+  cart.forEach(i => { msg += `• ${i.name} × ${i.qty} = ₪${(i.price * i.qty).toFixed(2)}\n`; });
+  msg += `\nסה"כ: ₪${total.toFixed(2)}`;
+  window.open('https://wa.me/972508810105?text=' + encodeURIComponent(msg), '_blank');
+});
+
+updateCartUI();
+
+// ── CAROUSEL ──
+const slides = document.querySelectorAll('#hero-carousel .slide');
+const dotsContainer = document.getElementById('carousel-dots');
+let cur = 0;
+slides.forEach((_, i) => {
+  const d = document.createElement('span');
+  if (i === 0) d.classList.add('active');
+  d.addEventListener('click', () => goTo(i));
+  dotsContainer.appendChild(d);
+});
+function goTo(n) {
+  slides[cur].classList.remove('active');
+  dotsContainer.children[cur].classList.remove('active');
+  cur = n;
+  slides[cur].classList.add('active');
+  dotsContainer.children[cur].classList.add('active');
+}
+setInterval(() => goTo((cur + 1) % slides.length), 3000);
+
+// ── SEARCH ──
+const searchInput = document.getElementById('main-search');
+const searchDropdown = document.getElementById('search-dropdown');
+const allItems = [...searchDropdown.querySelectorAll('.search-item')];
+
+searchInput.addEventListener('focus', () => searchDropdown.classList.add('open'));
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) { allItems.forEach(i => i.style.display = 'flex'); searchDropdown.classList.add('open'); return; }
+  allItems.forEach(i => {
+    const label = i.querySelector('.si-label').textContent.toLowerCase();
+    i.style.display = label.includes(q) ? 'flex' : 'none';
+  });
+  searchDropdown.classList.add('open');
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('.header-search')) searchDropdown.classList.remove('open');
+});
+</script>
+
+</body>
+</html>
