@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Up סטוק | מדיניות האתר</title>
+    <style>
+        .policy-hero {
+            background: var(--gradient, linear-gradient(135deg, #7c3aed, #a855f7, #ec4899));
+            color: white;
+            text-align: center;
+            padding: 50px 20px 40px;
+        }
+        .policy-hero h1 { margin: 0 0 10px; font-size: 2em; }
+        .policy-hero p  { margin: 0; opacity: 0.85; font-size: 1.05em; }
+
+        .policy-container {
+            max-width: 860px;
+            margin: 40px auto;
+            padding: 0 20px 60px;
+        }
+
+        .policy-toc {
+            background: white;
+            border-radius: 16px;
+            padding: 20px 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+        .policy-toc h3 { margin: 0 0 12px; color: var(--primary); font-size: 1em; }
+        .policy-toc ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
+        .policy-toc ul li a {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #ede9fe;
+            color: var(--primary);
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 600;
+            border: 1px solid #e5deff;
+            transition: all 0.2s;
+        }
+        .policy-toc ul li a:hover { background: var(--primary); color: white; }
+
+        .policy-section {
+            background: white;
+            border-radius: 16px;
+            padding: 28px 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            scroll-margin-top: 80px;
+        }
+        .policy-section h2 {
+            margin: 0 0 18px;
+            font-size: 1.25em;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .policy-section h2 .icon {
+            width: 36px; height: 36px;
+            background: #ede9fe;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1em;
+            flex-shrink: 0;
+        }
+        .policy-section p {
+            margin: 0 0 12px;
+            line-height: 1.8;
+            color: #444;
+            font-size: 0.96em;
+        }
+        .policy-section p:last-child { margin-bottom: 0; }
+        .policy-section ul {
+            margin: 8px 0 12px;
+            padding-right: 20px;
+            color: #444;
+            font-size: 0.96em;
+            line-height: 2;
+        }
+
+        .highlight-box {
+            background: #fff8e1;
+            border-right: 4px solid #ffc107;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 12px 0;
+            font-size: 0.93em;
+            color: #555;
+        }
+
+        .delivery-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.93em;
+        }
+        .delivery-table th {
+            background: #ede9fe;
+            color: var(--primary);
+            padding: 10px 14px;
+            text-align: right;
+            font-weight: 700;
+            border-bottom: 2px solid #e5deff;
+        }
+        .delivery-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #444;
+        }
+        .delivery-table tr:last-child td { border-bottom: none; }
+        .delivery-table tr:hover td { background: #fafafa; }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+            margin-top: 16px;
+        }
+        .contact-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.2s;
+            border: 1px solid #eee;
+        }
+        .contact-card:hover { background: #ede9fe; border-color: #e5deff; transform: translateY(-2px); }
+        .contact-card .c-icon { font-size: 1.8em; margin-bottom: 6px; }
+        .contact-card .c-label { font-size: 0.8em; color: #888; margin-bottom: 4px; }
+        .contact-card .c-val { font-weight: 700; font-size: 0.95em; color: var(--primary); }
+
+        .badge-free { background: #e8f5e9; color: #2e7d32; padding: 2px 10px; border-radius: 20px; font-size: 0.85em; font-weight: 700; }
+        .badge-paid { background: #fff3e0; color: #e65100; padding: 2px 10px; border-radius: 20px; font-size: 0.85em; font-weight: 700; }
+
+        footer { background: #1a1a1a; color: #ccc; padding: 30px 20px 20px; margin-top: 60px; }
+        .footer-bottom { text-align: center; font-size: 0.82em; color: #666; padding-top: 16px; border-top: 1px solid #333; }
+
+        @media (max-width: 600px) {
+            .policy-section { padding: 20px; }
+            .policy-hero h1 { font-size: 1.5em; }
+        }
+    </style>
+    <script src="common.js" defer></script>
+</head>
+<body>
+
+<div class="policy-hero">
+    <h1>📋 מדיניות האתר</h1>
+    <p>כל המידע שחשוב לך לדעת לפני הרכישה</p>
+</div>
+
+<div class="policy-container">
+
+    <!-- תוכן עניינים -->
+    <div class="policy-toc">
+        <h3>📌 קפיצה מהירה:</h3>
+        <ul>
+            <li><a href="#delivery">🚚 תנאי משלוח</a></li>
+            <li><a href="#returns">🔄 החזרות והחלפות</a></li>
+            <li><a href="#cancellation">❌ מדיניות ביטולים</a></li>
+            <li><a href="#privacy">🔒 מדיניות פרטיות</a></li>
+            <li><a href="#terms">📄 תנאי שימוש</a></li>
+            <li><a href="#contact">📞 יצירת קשר</a></li>
+        </ul>
+    </div>
+
+    <!-- תנאי משלוח -->
+    <div class="policy-section" id="delivery">
+        <h2><span class="icon">🚚</span> תנאי משלוח</h2>
+        <p>אנו מספקים שירות משלוח באמצעות שליח חיצוני לאזור <strong>בקעת אונו</strong> בלבד.</p>
+
+        <table class="delivery-table">
+            <tr>
+                <th>סכום הזמנה</th>
+                <th>עלות משלוח</th>
+            </tr>
+            <tr>
+                <td>מתחת ל-₪100</td>
+                <td>❌ משלוח אינו זמין</td>
+            </tr>
+            <tr>
+                <td>₪100 – ₪299</td>
+                <td><span class="badge-paid">₪15</span></td>
+            </tr>
+            <tr>
+                <td>₪300 ומעלה</td>
+                <td><span class="badge-free">חינם 🎉</span></td>
+            </tr>
+        </table>
+
+        <div class="highlight-box">
+            📍 <strong>אזור משלוח:</strong> בקעת אונו בלבד — קרית אונו, יהוד, גני תקווה, אור יהודה וסביבתן.<br>
+            ⏱️ <strong>זמן אספקה:</strong> עד 4 שעות מאישור ההזמנה.<br>
+            🏪 <strong>איסוף עצמי מהחנות:</strong> ללא עלות, בתיאום מראש.
+        </div>
+    </div>
+
+    <!-- החזרות והחלפות -->
+    <div class="policy-section" id="returns">
+        <h2><span class="icon">🔄</span> מדיניות החזרות והחלפות</h2>
+        <p>שביעות רצונך חשובה לנו. ניתן להחזיר או להחליף מוצרים בהתאם לתנאים הבאים:</p>
+        <ul>
+            <li>החזרת מוצר תתאפשר עד <strong>7 ימים</strong> מיום הקנייה.</li>
+            <li>המוצר חייב להיות <strong>באריזתו המקורית</strong>, ללא פגיעה ולא נעשה בו שימוש.</li>
+            <li>יש להציג <strong>קבלה / אסמכתא לרכישה</strong>.</li>
+            <li>מוצרים מתכלים, מזון, ומוצרי היגיינה — <strong>לא ניתן להחזיר</strong>.</li>
+            <li>מוצר פגום או שגוי — יוחלף ללא עלות.</li>
+        </ul>
+        <div class="highlight-box">
+            💡 להחזרה או החלפה — צרו קשר בוואטסאפ עם תמונת המוצר ומספר ההזמנה.
+        </div>
+    </div>
+
+    <!-- מדיניות ביטולים -->
+    <div class="policy-section" id="cancellation">
+        <h2><span class="icon">❌</span> מדיניות ביטול עסקה</h2>
+        <p>מדיניות הביטול שלנו נקבעה בהתאם ל<strong>חוק הגנת הצרכן, התשמ"א-1981</strong> ותקנות הגנת הצרכן (ביטול עסקה), התשע"א-2010.</p>
+
+        <p><strong>זכות ביטול עסקה:</strong></p>
+        <ul>
+            <li>ניתן לבטל עסקה תוך <strong>14 ימים</strong> מיום קבלת המוצר או מיום ביצוע העסקה — לפי המאוחר מביניהם.</li>
+            <li>הביטול ייעשה באמצעות פנייה בוואטסאפ, בטלפון, או בדוא"ל.</li>
+            <li>יש לציין את מספר ההזמנה, שם מלא וסיבת הביטול.</li>
+        </ul>
+
+        <p><strong>דמי ביטול:</strong></p>
+        <ul>
+            <li>בגין ביטול עסקה ייגבו דמי ביטול בסך <strong>5% ממחיר העסקה או 100 ש"ח — הנמוך מביניהם</strong>.</li>
+            <li>במקרה של מוצר פגום או שונה מהמתואר — הביטול יבוצע <strong>ללא חיוב כלל</strong>.</li>
+        </ul>
+
+        <p><strong>החזר כספי:</strong></p>
+        <ul>
+            <li>ההחזר הכספי יבוצע תוך <strong>14 ימי עסקים</strong> מיום קבלת הודעת הביטול.</li>
+            <li>ההחזר יתבצע באותו אמצעי תשלום בו בוצעה הרכישה.</li>
+        </ul>
+
+        <p><strong>לא ניתן לבטל עסקה במקרים הבאים:</strong></p>
+        <ul>
+            <li>מוצרים מתכלים, מוצרי מזון ומוצרי היגיינה שנפתחו.</li>
+            <li>מוצרים שיוצרו או הורכבו במיוחד לפי דרישת הלקוח.</li>
+            <li>מוצרים שנעשה בהם שימוש ולא ניתן להחזירם למצבם המקורי.</li>
+        </ul>
+
+        <div class="highlight-box">
+            📞 לביטול עסקה — צרו קשר בוואטסאפ <strong>050-8810105</strong> או בטלפון עם מספר ההזמנה.
+        </div>
+    </div>
+
+    <!-- מדיניות פרטיות -->
+    <div class="policy-section" id="privacy">
+        <h2><span class="icon">🔒</span> מדיניות פרטיות</h2>
+        <p>Up סטוק ("החברה", "אנחנו") מחויבת לשמירה על פרטיות המשתמשים באתר. מדיניות זו מסבירה כיצד אנו אוספים, משתמשים ומגנים על המידע האישי שלך.</p>
+
+        <p><strong>1. מידע שאנו אוספים:</strong></p>
+        <ul>
+            <li><strong>פרטים אישיים</strong> — שם מלא, מספר טלפון, כתובת למשלוח.</li>
+            <li><strong>פרטי הזמנה</strong> — מוצרים שנרכשו, סכומים, תאריכי רכישה.</li>
+            <li><strong>נתוני גלישה</strong> — כתובת IP, סוג דפדפן, דפים שנצפו (באמצעות קובצי Cookies).</li>
+        </ul>
+
+        <p><strong>2. שימוש במידע:</strong></p>
+        <ul>
+            <li>עיבוד וביצוע הזמנות.</li>
+            <li>יצירת קשר בנוגע להזמנות ושירות לקוחות.</li>
+            <li>שיפור חוויית הגלישה והשירות באתר.</li>
+            <li>שליחת עדכונים ומבצעים (בהסכמת הלקוח בלבד).</li>
+        </ul>
+
+        <p><strong>3. שיתוף מידע עם צדדים שלישיים:</strong></p>
+        <ul>
+            <li><strong>לא נמכור ולא נעביר את פרטיך האישיים לגורמים שלישיים</strong> למטרות שיווקיות.</li>
+            <li>מידע יועבר לשליח לצורך ביצוע משלוח בלבד.</li>
+            <li>מידע עשוי להיות מועבר לספק שירותי סליקה לצורך עיבוד תשלומים, באופן מאובטח.</li>
+            <li>נחשוף מידע אם נידרש לכך על פי חוק או צו בית משפט.</li>
+        </ul>
+
+        <p><strong>4. אבטחת מידע:</strong></p>
+        <ul>
+            <li>אנו נוקטים באמצעי אבטחה סבירים להגנה על המידע האישי שלך.</li>
+            <li>תשלומים מעובדים באמצעות ספק סליקה מאובטח בתקן PCI-DSS. <strong>איננו שומרים פרטי כרטיס אשראי</strong>.</li>
+        </ul>
+
+        <p><strong>5. קובצי Cookies:</strong></p>
+        <ul>
+            <li>האתר משתמש בקובצי Cookies לצורך שיפור חוויית הגלישה ולצרכים סטטיסטיים.</li>
+            <li>ניתן לחסום Cookies דרך הגדרות הדפדפן, אך הדבר עלול לפגוע בתפקוד האתר.</li>
+        </ul>
+
+        <p><strong>6. זכויות המשתמש:</strong></p>
+        <ul>
+            <li>עיון במידע האישי השמור אודותיך.</li>
+            <li>בקשה לתיקון או מחיקת מידע אישי.</li>
+            <li>הסרה מרשימת דיוור בכל עת.</li>
+        </ul>
+
+        <div class="highlight-box">
+            📧 לכל שאלה בנושא פרטיות — צרו קשר בוואטסאפ <strong>054-455-1782</strong>.<br>
+            מדיניות זו עודכנה לאחרונה בתאריך: <strong>מרץ 2026</strong>.
+        </div>
+    </div>
+
+    <!-- תנאי שימוש -->
+    <div class="policy-section" id="terms">
+        <h2><span class="icon">📄</span> תנאי שימוש באתר</h2>
+        <p>השימוש באתר Up סטוק מהווה הסכמה לתנאים הבאים:</p>
+        <ul>
+            <li>המחירים באתר כוללים מע"מ ועשויים להשתנות ללא הודעה מוקדמת.</li>
+            <li>תמונות המוצרים הן להמחשה בלבד — ייתכנו שינויים קלים באריזה.</li>
+            <li>זמינות המוצרים תלויה במלאי הקיים. מוצר שאזל לאחר ביצוע ההזמנה — תקבל הודעה.</li>
+            <li>האתר שומר לעצמו את הזכות לעדכן מחירים, מבצעים ותנאים בכל עת.</li>
+            <li>אין לעשות שימוש מסחרי בתכני האתר ללא אישור מפורש.</li>
+        </ul>
+    </div>
+
+    <!-- יצירת קשר -->
+    <div class="policy-section" id="contact">
+        <h2><span class="icon">📞</span> יצירת קשר ושירות לקוחות</h2>
+        <p>יש שאלה? בעיה עם הזמנה? אנחנו כאן בשבילך:</p>
+
+        <div class="contact-grid">
+            <a href="https://wa.me/972544551782" class="contact-card" target="_blank">
+                <div class="c-icon">💬</div>
+                <div class="c-label">וואטסאפ</div>
+                <div class="c-val">054-455-1782</div>
+            </a>
+            <a href="tel:0544551782" class="contact-card">
+                <div class="c-icon">📱</div>
+                <div class="c-label">טלפון</div>
+                <div class="c-val">054-455-1782</div>
+            </a>
+            <div class="contact-card">
+                <div class="c-icon">🕐</div>
+                <div class="c-label">שעות פעילות</div>
+                <div class="c-val">א׳–ה׳ | 9:00–19:00</div>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top:16px;">
+            ⚡ זמן מענה ממוצע בוואטסאפ: עד שעה בשעות הפעילות.
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <div class="footer-bottom">
+        © 2025 Up סטוק — כל הזכויות שמורות
+    </div>
+</footer>
+
+</body>
+</html>
