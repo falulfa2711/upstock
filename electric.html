@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תקעים ומאריכים | Up סטוק</title>
+    <style>
+        .page-header { text-align: center; padding: 40px 20px; background: var(--gradient, linear-gradient(135deg,#7c3aed,#a855f7,#ec4899)); color: white; margin-bottom: 30px; }
+        .page-header h1 { margin: 0 0 8px; font-size: 2em; }
+        .page-header p { margin: 0; opacity: 0.9; font-size: 1.05em; }
+    </style>
+    <script src="common.js" defer></script>
+</head>
+<body>
+
+<div class="page-header">
+    <h1>⚡ תקעים ומאריכים</h1>
+    <p>רב שקעים, נורות לד ואביזרי חשמל</p>
+</div>
+
+<div class="container">
+    <div class="products-grid" id="products-grid"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('electric.csv?t=' + Date.now())
+        .then(r => r.text())
+        .then(text => {
+            const lines = text.split('\n').filter(l => l.trim());
+            const grid = document.getElementById('products-grid');
+            lines.forEach((line, i) => {
+                if (i === 0) return;
+                const parts = line.split(',');
+                if (parts.length < 3) return;
+                const name  = parts[0].trim();
+                const image = parts[1].trim();
+                const price = parseFloat(parts[2]) || 0;
+                const stock = parseInt(parts[3]) ?? 1;
+                const outOfStock = stock === 0;
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <img src="images/products/${image}" alt="${name}" onclick="openImg(this.src)" onerror="this.src='images/logo.jpg'" />
+                    ${outOfStock ? '<span class="out-of-stock-badge">אזל המלאי</span>' : ''}
+                    <h4>${name}</h4>
+                    <div style="font-size:1.1em;font-weight:800;color:var(--accent,#7c3aed);margin-bottom:10px;">₪${price}</div>
+                    <button class="add-btn" onclick="openVariantSelector('${name.replace(/'/g,"\\'")}',${price})" ${outOfStock ? 'disabled' : ''}>הוסף לסל +</button>`;
+                grid.appendChild(card);
+            });
+        });
+});
+</script>
+
+</body>
+</html>
